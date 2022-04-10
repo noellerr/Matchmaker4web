@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--Based on Epogue MatchmakerWebLite part 2
+Credits given
+-->
+
+<head>
+	<meta charset='UTF-8'>
+	<title>Matchmaker</title>
+	<link rel='stylesheet' href='index.css' />
+</head>
+
+<body>
+	<h1>❤️Welcome to Matchmaker for the Web❤️</h1>
+	<br /><br />
+	<p id='p1'>Hello! This program is a set of questions to see whether you and I would be a
+	 "perfect match." You will click on each drop down box below and select your
+	 answer according to the question. Thank you in advance for your interest
+	and good luck...</p> 
+	<br /><br />
+	<!-- Reference for HTML “option” tabs/fields: https://www.w3schools.com/tags/tag_option.asp -->
+	<label>1. Chicago is better than New York!</label><br />
+	<select id='Q1'>
+		<option value='5'>Strongly Agree</option>
+		<option value='4'>Agree</option>
+		<option value='3'>Neither agree nor disagree</option>
+		<option value='2'>Disagree</option>
+		<option value='1'>Strongly Disagree</option>
+	</select>
+	<br /><br />
+
+	<label>2. Your prefer the ocean over lakes.</label><br />
+	<select id='Q2'>
+		<option value='5'>Strongly Agree</option>
+		<option value='4'>Agree</option>
+		<option value='3'>Neither agree nor disagree</option>
+		<option value='2'>Disagree</option>
+		<option value='1'>Strongly Disagree</option>
+	</select>
+	<br /><br />
+
+	<label>3. You think "Blonde" by Frank Ocean is a work of art.</label><br />
+	<select id='Q3'>
+		<option value='5'>Strongly Agree</option>
+		<option value='4'>Agree</option>
+		<option value='3'>Neither agree nor disagree</option>
+		<option value='2'>Disagree</option>
+		<option value='1'>Strongly Disagree</option>
+	</select>
+	<br /><br />
+
+	<label>4. One of the best book series ever is Percy Jackson and the Olympians.</label><br />
+	<select id='Q4'>
+		<option value='5'>Strongly Agree</option>
+		<option value='4'>Agree</option>
+		<option value='3'>Neither agree nor disagree</option>
+		<option value='2'>Disagree</option>
+		<option value='1'>Strongly Disagree</option>
+	</select>
+	<br /><br />
+
+	<label>5. You prefer chocolate over sour candy.</label><br />
+	<select id='Q5'>
+		<option value='5'>Strongly Agree</option>   
+		<option value='4'>Agree</option>
+		<option value='3'>Neither agree nor disagree</option>
+		<option value='2'>Disagree</option>
+		<option value='1'>Strongly Disagree</option>
+	</select>
+	
+	<br /><br /><br />
+
+	<button onclick='calculateCompatibility()'>Calculate Compatibility</button>
+	<br /><br /><br />
+	<p id='compatibility'></p>
+	
+	<p id='number'></p>
+
+	<br /><br /><br />
+
+<script>
+
+console.log('Starting Matchmaker...'); // Writing something to console
+
+function calculateCompatibility() {
+	console.log('calculateCompatibility');
+	const DESIRED_RESPONSE = [
+		3,
+		2,
+		5,
+		4,
+		1,
+	]
+	const MAX_SCORE = 25 
+		let question1Response = document.getElementById('Q1').selectedOptions[0].value;
+		let question1Compatibility = 5 - Math.abs(question1Response - DESIRED_RESPONSE[0]);
+
+		let question2Response = document.getElementById('Q2').selectedOptions[0].value;
+		let question2Compatibility = 5 - Math.abs(question2Response - DESIRED_RESPONSE[1]);
+
+		let question3Response = document.getElementById('Q3').selectedOptions[0].value;
+		let question3Compatibility = 5 - Math.abs(question3Response - DESIRED_RESPONSE[2]);
+
+		let question4Response = document.getElementById('Q4').selectedOptions[0].value;
+		let question4Compatibility = 5 - Math.abs(question4Response - DESIRED_RESPONSE[2]);
+
+		let question5Response = document.getElementById('Q5').selectedOptions[0].value;
+		let question5Compatibility = 5 - Math.abs(question5Response - DESIRED_RESPONSE[4]);
+
+		
+		let totCompatibility = question1Compatibility + question2Compatibility + question3Compatibility + question4Compatibility + question5Compatibility
+		let totalpercent = Math.ceil((totCompatibility/MAX_SCORE) * 100);
+
+		document.getElementById('compatibility').innerHTML = 'Your compatibility is: ' + totalpercent
+
+		let compnumber = totalpercent
+		let greeting;
+		if (compnumber == 100) {
+			greeting = 'Perfect Match 🎉❤️';
+		}
+		else if (compnumber >= 72 && compnumber < 100) {
+			greeting = 'Here is my number...📲';
+		}
+		else if (compnumber >= 50 && compnumber < 72) {
+			greeting = 'Odds may or may not be favorable 🤷🏻‍♀️';
+		}
+		else {
+			greeting = 'Nope 🤺'; 
+		}
+		
+		document.getElementById('number').innerHTML = 'Result: ' + greeting
+}
+
+</script>
+</body>
+</html>
